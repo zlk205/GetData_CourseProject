@@ -1,5 +1,5 @@
-##run_analysis.R - R script for cleaning the UCI HAR Dataset
-#Remember to set your Working Directory before beginning the download
+##run_analysis.R - R script for cleaning the UCI "Human Activity Recognition Using Smartphones" Data Set
+#Remember to set your Working Directory before beginning the file download
 #See the README.md for additional notes on the following scripts
 
 fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"

@@ -15,13 +15,11 @@ Prior to running any of the scripts from this file, *remember to set your Workin
 
 The following script sets the URL path for the HAR .zip file, downloads the file, and unzips it to
 a subfolder in the working directory called "CourseProject".  Please note, all MAC users must add
-method="curl" to the download.file() arguments list.  Also, please note, the unzip() function may take
-up to 10 minutes to unzip all the files into the appropriate folders.  To save time, you can skip this 
-step in the script and manually unzip the files into the "CourseProject" subfolder.
+method="curl" to the download.file() arguments list.  Also, please note, the user may choose to perform this section manually.  If so, instead of running the script below, download the .ZIP file from the link above and unzip its contents to a "CourseProject" subfolder within the user's working directory.
     
     fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
     download.file(fileUrl,destfile="./GetData_CourseProject.zip")
-    unzip("./CourseProject.zip",exdir="./CourseProject")
+    unzip("./GetData_CourseProject.zip",exdir="./CourseProject")
 
 The UCI HAR Dataset is broken into 2 datasets - the training data and the test data.  The following
 script downloads all corresponding files into a training data frame and a test data frame, then combines
@@ -66,12 +64,11 @@ variable.  Then the levels are assigned using the newly created 'activ.lab' char
     full.data$Activity <- factor(full.data$Activity)
     levels(full.data$Activity)<-activ.lab
 
-The data sort is now re-ordered based on (1) the participant ID and (2) the type of activity.
+The dataset is now re-ordered based on (1) the participant ID and (2) the type of activity.
     
     full.data<-full.data[order(full.data$ID,full.data$Activity),]
 
-The following script pulls out only the columns of interest, specifically the features that measure the
-mean and standard deviation for each measurement (or feature). The grepl() function is used to pull out
+The following script pulls out only the columns of interest, specifically the variables that represent the mean and standard deviation for each measurement (or feature). The grepl() function is used to pull out
 columns that contain "mean()" or "std()" in the column name. Then the full dataset is subsetted with this newly created index.  Before continuing, the grepl() function has inadvertently grabbed a few other column names with "mean" in the title.  The next line of script removes the extra unwanted columns. Finally, a new character vector for the subsetted column names is created.
     
     x.subset<-grepl("mean()|std()",colnames(full.data))
