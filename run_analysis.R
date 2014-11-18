@@ -3,8 +3,9 @@
 #See the README.md for additional notes on the following scripts
 
 fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileUrl,destfile="./CourseProject.zip")
-unzip("./CourseProject.zip",exdir="./CourseProject")
+download.file(fileUrl,destfile="./GetData_CourseProject.zip")
+#MAC users must add [method="curl"] to the download.file() arguments list
+unzip("./GetData_CourseProject.zip",exdir="./CourseProject")
 
 subj.train = read.table("./CourseProject/UCI HAR Dataset/train/subject_train.txt")
 x.train = read.table("./CourseProject/UCI HAR Dataset/train/X_train.txt")
@@ -41,6 +42,7 @@ full.data<-cbind(full.data$ID,x.subset,full.data$Activity)
 colnames(full.data)<-c("ID",sub.names,"Activity")
 rownames(full.data)<-1:10299
 
+#If the 'dplyr' package is not installed, user must run [install.packages("dplyr")]
 library(dplyr)
 df<-tbl_df(full.data)
 
