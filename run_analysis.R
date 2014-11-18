@@ -25,7 +25,7 @@ features = read.table("./CourseProject/UCI HAR Dataset/features.txt")
 activ.lab<-as.character(activ.lab[,2])
 features<-as.character(features[,2])
 
-features<-gsub("-",".",features) #Replaces the "-" with a "." to aid in further analysis
+features<-gsub("-",".",features)
 colnames(full.data)<-c("ID",features,"Activity")
 
 full.data$Activity <- factor(full.data$Activity)
